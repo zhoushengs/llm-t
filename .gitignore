@@ -4,4 +4,4 @@ __pycache__/
 .env
 dataset/
 res/
-.sh
+*.sh
