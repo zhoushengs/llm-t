@@ -1,0 +1,48 @@
+Thu Aug 20 01:11:31 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.159.04             Driver Version: 580.159.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA H100 80GB HBM3          Off |   00000000:4E:00.0 Off |                    0 |
+| N/A   35C    P0             72W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+2.2.3
+Job ID: 19295055
+starting test run...
+LLM总参数量：215.127 百万
+Epoch:[1/1](0/203125) loss:8.906 lr:0.0002000 epoch_Time:8173.0min;
+Epoch:[1/1](100/203125) loss:7.380 lr:0.0002000 epoch_Time:960.0min;
+Epoch:[1/1](200/203125) loss:6.981 lr:0.0002000 epoch_Time:923.0min;
+Epoch:[1/1](300/203125) loss:6.922 lr:0.0002000 epoch_Time:910.0min;
+Epoch:[1/1](400/203125) loss:6.795 lr:0.0002000 epoch_Time:904.0min;
+Epoch:[1/1](500/203125) loss:6.453 lr:0.0002000 epoch_Time:899.0min;
+Epoch:[1/1](600/203125) loss:5.966 lr:0.0002000 epoch_Time:897.0min;
+Epoch:[1/1](700/203125) loss:5.704 lr:0.0002000 epoch_Time:894.0min;
+Epoch:[1/1](800/203125) loss:5.279 lr:0.0002000 epoch_Time:893.0min;
+Epoch:[1/1](900/203125) loss:5.010 lr:0.0002000 epoch_Time:892.0min;
+Epoch:[1/1](1000/203125) loss:4.756 lr:0.0002000 epoch_Time:893.0min;
+Epoch:[1/1](1100/203125) loss:4.606 lr:0.0002000 epoch_Time:892.0min;
+Epoch:[1/1](1200/203125) loss:4.600 lr:0.0002000 epoch_Time:890.0min;
+Epoch:[1/1](1300/203125) loss:4.376 lr:0.0002000 epoch_Time:889.0min;
+Epoch:[1/1](1400/203125) loss:4.340 lr:0.0002000 epoch_Time:888.0min;
+Epoch:[1/1](1500/203125) loss:4.356 lr:0.0002000 epoch_Time:887.0min;
+Epoch:[1/1](1600/203125) loss:4.079 lr:0.0002000 epoch_Time:886.0min;
+Epoch:[1/1](1700/203125) loss:4.228 lr:0.0002000 epoch_Time:886.0min;
+Epoch:[1/1](1800/203125) loss:3.941 lr:0.0002000 epoch_Time:885.0min;
+Epoch:[1/1](1900/203125) loss:3.985 lr:0.0002000 epoch_Time:884.0min;
+Epoch:[1/1](2000/203125) loss:3.931 lr:0.0002000 epoch_Time:885.0min;
+Epoch:[1/1](2100/203125) loss:3.844 lr:0.0002000 epoch_Time:884.0min;
+Epoch:[1/1](2200/203125) loss:3.851 lr:0.0001999 epoch_Time:884.0min;
+[2026-08-20T05:21:46.022] error: *** JOB 19295055 ON rg31703 CANCELLED AT 2026-08-20T05:21:46 DUE TO TIME LIMIT ***

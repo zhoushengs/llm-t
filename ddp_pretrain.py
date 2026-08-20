@@ -168,7 +168,7 @@ def train_epoch(epoch):
             model.train()
 
 
-def init_model():
+def init_model(tokenizer_path="./dataset/tokenizer_k/"):
     """
     初始化模型和分词器
     
@@ -195,7 +195,7 @@ def init_model():
         return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
     # 从本地路径加载预训练的分词器
-    tokenizer = AutoTokenizer.from_pretrained('./dataset/tokenizer_k/')
+    tokenizer = AutoTokenizer.from_pretrained(tokenizer_path+'/')
     if tokenizer.pad_token_id is not None:
         lm_config.pad_token_id = tokenizer.pad_token_id
 
@@ -222,7 +222,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tiny-LLM Pretraining")
     
     # 基础训练参数
-    parser.add_argument("--out_dir", type=str, default="dataet/base_model_215M", help="模型输出目录")
+    parser.add_argument("--out_dir", type=str, default="dataset/base_model_215M", help="模型输出目录")
     parser.add_argument("--epochs", type=int, default=1, help="训练轮数")
     parser.add_argument("--batch_size", type=int, default=8, help="批次大小")
     parser.add_argument("--learning_rate", type=float, default=2e-4, help="学习率")
@@ -245,7 +245,7 @@ if __name__ == "__main__":
     
     # 多GPU训练参数
     parser.add_argument("--gpus", type=str, default='0,1,2,3,4,5,6,7', help="使用的GPU ID，用逗号分隔 (例如: '0,1,2')")
-
+    parser.add_argument("--tokenizer_path", type=str, default="./dataset/tokenizer_k/", help="分词器路径")
     args = parser.parse_args()
 
     # ==================== GPU环境设置 ====================
@@ -293,7 +293,7 @@ if __name__ == "__main__":
 
     # ==================== 模型和数据初始化 ====================
     # 初始化模型和分词器
-    model, tokenizer = init_model()
+    model, tokenizer = init_model(args.tokenizer_path)
     
     # 创建训练数据集
     train_ds = PretrainDataset(args.data_path, tokenizer, max_length=max_seq_len)

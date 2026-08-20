@@ -1,0 +1,82 @@
+Thu Aug 20 00:40:56 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.159.04             Driver Version: 580.159.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA H100 80GB HBM3          Off |   00000000:4E:00.0 Off |                    0 |
+| N/A   49C    P0             74W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+2.2.3
+Job ID: 19294089
+starting test run...
+[transformers] Disabling PyTorch because PyTorch >= 2.5 is required but found 2.4.1+computecanada
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+Traceback (most recent call last):
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/utils/hub.py", line 438, in cached_files
+    hf_hub_download(
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 84, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 132, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': 'lustre09/project/6020210/zimozhou/dataset/tokenizer_k/'. Use `repo_type` argument if needed.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 768, in from_pretrained
+    config = AutoConfig.from_pretrained(
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/models/auto/configuration_auto.py", line 388, in from_pretrained
+    config_dict, unused_kwargs = PreTrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/configuration_utils.py", line 745, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/configuration_utils.py", line 800, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/utils/hub.py", line 294, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/utils/hub.py", line 496, in cached_files
+    raise OSError(f"{e}") from e
+OSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': 'lustre09/project/6020210/zimozhou/dataset/tokenizer_k/'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/utils/hub.py", line 438, in cached_files
+    hf_hub_download(
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 84, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 132, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': 'lustre09/project/6020210/zimozhou/dataset/tokenizer_k/'. Use `repo_type` argument if needed.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zimozhou/llm/llm-t/ddp_pretrain.py", line 296, in <module>
+    model, tokenizer = init_model(args.tokenizer_path)
+  File "/home/zimozhou/llm/llm-t/ddp_pretrain.py", line 198, in init_model
+    tokenizer = AutoTokenizer.from_pretrained(tokenizer_path+'/')
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 772, in from_pretrained
+    config = PreTrainedConfig.from_pretrained(pretrained_model_name_or_path, **kwargs)
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/configuration_utils.py", line 704, in from_pretrained
+    config_dict, kwargs = cls.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/configuration_utils.py", line 745, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/configuration_utils.py", line 800, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/utils/hub.py", line 294, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/home/zimozhou/my_env/lib/python3.10/site-packages/transformers/utils/hub.py", line 496, in cached_files
+    raise OSError(f"{e}") from e
+OSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': 'lustre09/project/6020210/zimozhou/dataset/tokenizer_k/'. Use `repo_type` argument if needed.
