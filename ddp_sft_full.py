@@ -119,7 +119,7 @@ def train_epoch(epoch):
             model.train()
 
 
-def init_model(tokenizer_path="./dataset/tokenizer_k/"):
+def init_model(tokenizer_path="./dataset/tokenizer_k/", ckp_file='./base_model_215M/pretrain_1024_18_6144.pth'):
     """初始化模型"""
     def count_parameters(model):
         """计算模型参数量"""
@@ -134,7 +134,7 @@ def init_model(tokenizer_path="./dataset/tokenizer_k/"):
     model = Transformer(lm_config)
 
     # 加载预训练权重
-    ckp = './base_model_215M/pretrain_1024_18_6144.pth'
+    ckp = ckp_file
     state_dict = torch.load(ckp, map_location=args.device)
     unwanted_prefix = '_orig_mod.'
     for k, v in list(state_dict.items()):
@@ -172,7 +172,7 @@ if __name__ == "__main__":
     # 添加多卡参数
     parser.add_argument("--gpus", type=str, default='0,1,2,3,4,5,6,7', help="逗号分隔的GPU ID (例如 '0,1,2')")
     parser.add_argument("--tokenizer_path", type=str, default="./dataset/tokenizer_k", help="分词器路径")
-
+    parser.add_argument("--ckp_path", type=str, default='./base_model_215M/pretrain_1024_18_6144.pth', help='pretrain weight path')
     args = parser.parse_args()
 
     # 设置可见GPU
@@ -210,7 +210,7 @@ if __name__ == "__main__":
     ctx = nullcontext() if device_type == "cpu" else torch.cuda.amp.autocast(dtype=ptdtype)
 
     # 初始化模型和分词器
-    model, tokenizer = init_model(args.tokenizer_path)
+    model, tokenizer = init_model(args.tokenizer_path, ckp_file=args.ckp_path)
     
     # 创建数据集和数据加载器
     train_ds = SFTDataset(args.data_path, tokenizer, max_length=max_seq_len)
