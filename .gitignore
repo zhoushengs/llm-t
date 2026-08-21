@@ -8,3 +8,4 @@ res/
 out/
 
 *.pth
+*.vscode/
