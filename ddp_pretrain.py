@@ -245,7 +245,7 @@ if __name__ == "__main__":
     
     # 多GPU训练参数
     parser.add_argument("--gpus", type=str, default='0,1,2,3,4,5,6,7', help="使用的GPU ID，用逗号分隔 (例如: '0,1,2')")
-    parser.add_argument("--tokenizer_path", type=str, default="./dataset/tokenizer_k/", help="分词器路径")
+    parser.add_argument("--tokenizer_path", type=str, default="./dataset/tokenizer_k", help="分词器路径")
     args = parser.parse_args()
 
     # ==================== GPU环境设置 ====================

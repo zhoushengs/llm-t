@@ -119,14 +119,14 @@ def train_epoch(epoch):
             model.train()
 
 
-def init_model():
+def init_model(tokenizer_path="./dataset/tokenizer_k/"):
     """初始化模型"""
     def count_parameters(model):
         """计算模型参数量"""
         return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
     # 加载分词器
-    tokenizer = AutoTokenizer.from_pretrained('dataset/tokenizer_k/')
+    tokenizer = AutoTokenizer.from_pretrained(tokenizer_path+'/')
     if tokenizer.pad_token_id is not None:
         lm_config.pad_token_id = tokenizer.pad_token_id
 
@@ -171,6 +171,7 @@ if __name__ == "__main__":
     parser.add_argument("--save_interval", type=int, default=1000, help="模型保存间隔")
     # 添加多卡参数
     parser.add_argument("--gpus", type=str, default='0,1,2,3,4,5,6,7', help="逗号分隔的GPU ID (例如 '0,1,2')")
+    parser.add_argument("--tokenizer_path", type=str, default="./dataset/tokenizer_k", help="分词器路径")
 
     args = parser.parse_args()
 
@@ -209,7 +210,7 @@ if __name__ == "__main__":
     ctx = nullcontext() if device_type == "cpu" else torch.cuda.amp.autocast(dtype=ptdtype)
 
     # 初始化模型和分词器
-    model, tokenizer = init_model()
+    model, tokenizer = init_model(args.tokenizer_path)
     
     # 创建数据集和数据加载器
     train_ds = SFTDataset(args.data_path, tokenizer, max_length=max_seq_len)
