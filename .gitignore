@@ -7,3 +7,6 @@ res/
 *.sh
 *.txt
 *.out
+out/
+*.pth
+*.vscode/

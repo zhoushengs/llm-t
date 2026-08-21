@@ -1,0 +1,30 @@
+# --- 核心深度学习框架 ---
+torch
+torchvision
+torchaudio
+
+
+# --- 模型与训练相关 ---
+transformers
+huggingface_hub
+tiktoken
+#swanlab
+
+
+# --- 数据与科学计算 ---
+numpy
+pandas
+scipy
+scikit-learn
+datasets
+
+
+# --- 图像处理 ---
+Pillow
+PyWavelets
+
+# --- 其他你代码里明确引入的工具 ---
+tqdm
+pyyaml
+yfinance
+beautifulsoup4
