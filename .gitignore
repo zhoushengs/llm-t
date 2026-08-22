@@ -10,3 +10,4 @@ res/
 out/
 *.pth
 *.vscode/
+debug_run.py

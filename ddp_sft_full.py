@@ -67,6 +67,10 @@ def train_epoch(epoch):
             loss = out.last_loss / args.accumulation_steps
             loss_mask = loss_mask.view(-1)
             loss = torch.sum(loss * loss_mask) / loss_mask.sum()
+        mask_sum = loss_mask.sum()
+        if mask_sum.item() == 0:
+            Logger(f"[DEBUG] step {step} loss_mask全为0!")
+        loss = torch.sum(loss * loss_mask) / mask_sum.clamp(min=1)
 
         # 反向传播
         scaler.scale(loss).backward()
