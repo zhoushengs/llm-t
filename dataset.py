@@ -105,6 +105,13 @@ class SFTDataset(Dataset):
             f.seek(self._offsets[index])
             line = f.readline().decode('utf-8')
         sample = json.loads(line)
+        if 'conversations' in sample:
+            # 兼容 ShareGPT 格式 (conversations/from/value) -> chat_template 期望的 role/content
+            role_map = {'human': 'user', 'assistant': 'assistant'}
+            sample = [
+                {'role': role_map[turn['from']], 'content': turn['value']}
+                for turn in sample['conversations']
+            ]
         text = self.tokenizer.apply_chat_template(sample, tokenize=False, add_generation_prompt=False)
         input_id = self.tokenizer(text).data['input_ids'][:self.max_length]
         text_len = len(input_id)
